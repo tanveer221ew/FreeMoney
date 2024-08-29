@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Free Money Now!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(45deg, #ffcc80, #ffecb3, #ffab91, #ffccbc);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            position: relative;
+            cursor: none; /* Hide default cursor */
+        }
+
+        .container {
+            max-width: 600px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s ease-in-out;
+            z-index: 2;
+        }
+
+        h1 {
+            color: #ff5722;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: bounceIn 1s ease-in-out;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ff5722;
+            color: white;
+            padding: 18px 30px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 3;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+        }
+
+        .cta-button:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .cta-button:hover {
+            background-color: #e64a19;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        }
+
+        .cta-button.wiggle {
+            animation: wiggle 0.5s infinite;
+        }
+
+        .highlight {
+            color: #d32f2f;
+            font-weight: bold;
+            animation: pulseHighlight 1.5s infinite;
+        }
+
+        .countdown {
+            font-size: 1.5rem;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+
+        @keyframes pulseHighlight {
+            0% { color: #d32f2f; }
+            50% { color: #b71c1c; }
+            100% { color: #d32f2f; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0%, 20%, 40%, 60%, 80%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-20px);
+            }
+            50% {
+                transform: translateY(10px);
+            }
+            70% {
+                transform: translateY(-10px);
+            }
+            90% {
+                transform: translateY(5px);
+            }
+        }
+
+        @keyframes wiggle {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff5722;
+            opacity: 0.8;
+            border-radius: 50%;
+            animation: confettiFall 5s linear infinite;
+            pointer-events: none;
+        }
+
+        .confetti:nth-child(2n) {
+            background-color: #e64a19;
+        }
+
+        .confetti:nth-child(3n) {
+            background-color: #ffccbc;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .cursor {
+            width: 25px;
+            height: 25px;
+            background-color: rgba(255, 87, 34, 0.5);
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 20px rgba(255, 87, 34, 0.5);
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: multiply;
+        }
+
+        .popup {
+            position: absolute;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ff5722;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: bottom 0.5s ease;
+            z-index: 1000;
+            opacity: 0.95;
+        }
+
+        .popup.active {
+            bottom: 30px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .cta-button {
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="container">
+        <h1>Get Your Free Money Now!</h1>
+        <div class="countdown">05:00</div>
+        <p>We've got a limited-time offer just for you! <span class="highlight">Free money</span> is waiting, and it's as easy as a click. This opportunity won’t last forever, so don't miss out! Click the button below and claim your share of <span class="highlight">free cash</span> today!</p>
+        <a href="https://roufiniptoh.net/4/7994949" class="cta-button pulse">Click here to claim free money</a>
+    </div>
+    <div class="popup">🔥 Hurry up! Only a few offers left! 🔥</div>
+  <script>
+        // Countdown Timer Script
+        function startCountdown(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = minutes + ":" + seconds;
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        // Confetti Animation
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+
+        // Custom Cursor
+        document.addEventListener('mousemove', function(e) {
+            const cursor = document.querySelector('.cursor');
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Pop-up Trigger
+        function showPopup() {
+            document.querySelector('.popup').classList.add('active');
+        }
+
+        // Wiggle Button if Idle
+        let idleTimer;
+        document.addEventListener('mousemove', resetIdleTimer);
+        document.addEventListener('keypress', resetIdleTimer);
+
+        function resetIdleTimer() {
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => {
+                document.querySelector('.cta-button').classList.add('wiggle');
+            }, 3000);
+        }
+
+        // Add Confetti on Button Hover/Click
+        const ctaButton = document.querySelector('.cta-button');
+        ctaButton.addEventListener('mouseover', () => {
+            for (let i = 0; i < 30; i++) {
+                createConfetti();
+            }
+        });
+
+        ctaButton.addEventListener('click', () => {
+            for (let i = 0; i < 50; i++) {
+                createConfetti();
+            }
+            document.querySelector('.popup').classList.remove('active');
+        });
+
+        // Start Countdown Timer
+        window.onload = function () {
+            const fiveMinutes = 60 * 5,
+                display = document.querySelector('.countdown');
+            startCountdown(fiveMinutes, display);
+            setTimeout(showPopup, 15000);
+        };
+    </script>
+</body>
+</html>
